@@ -1,0 +1,476 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/malgorithms/tablify"
+
+    >tablify (v0.1.5)</a>
+</h1>
+<h4>Quick and painless printing of tabular data</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.tablify">module tablify</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.tablify.tablify">
+            function <span class="apidocSignatureSpan"></span>tablify
+            <span class="apidocSignatureSpan">(arr, opts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.tablify.tablifyArrays">
+            function <span class="apidocSignatureSpan">tablify.</span>tablifyArrays
+            <span class="apidocSignatureSpan">(arr, opts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.tablify.tablifyDicts">
+            function <span class="apidocSignatureSpan">tablify.</span>tablifyDicts
+            <span class="apidocSignatureSpan">(arr, opts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.tablify.tablifySingleDict">
+            function <span class="apidocSignatureSpan">tablify.</span>tablifySingleDict
+            <span class="apidocSignatureSpan">(o, opts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.tablify.toString">
+            function <span class="apidocSignatureSpan">tablify.</span>toString
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.tablify.tablifyArrays">module tablify.tablifyArrays</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.tablify.tablifyArrays.tablifyArrays">
+            function <span class="apidocSignatureSpan">tablify.</span>tablifyArrays
+            <span class="apidocSignatureSpan">(arr, opts)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.tablify.tablifyDicts">module tablify.tablifyDicts</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.tablify.tablifyDicts.tablifyDicts">
+            function <span class="apidocSignatureSpan">tablify.</span>tablifyDicts
+            <span class="apidocSignatureSpan">(arr, opts)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.tablify.tablifySingleDict">module tablify.tablifySingleDict</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.tablify.tablifySingleDict.tablifySingleDict">
+            function <span class="apidocSignatureSpan">tablify.</span>tablifySingleDict
+            <span class="apidocSignatureSpan">(o, opts)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.tablify.toString">module tablify.toString</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.tablify.toString.toString">
+            function <span class="apidocSignatureSpan">tablify.</span>toString
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.tablify" id="apidoc.module.tablify">module tablify</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.tablify.tablify" id="apidoc.element.tablify.tablify">
+        function <span class="apidocSignatureSpan"></span>tablify
+        <span class="apidocSignatureSpan">(arr, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">tablify = function (arr, opts) {
+  if ((typeof arr) === &#x27;object&#x27;) {
+    if (!Array.isArray(arr)) {
+      return exports.tablifySingleDict(arr, opts);
+    } else if (isArrayOfArrays(arr)) {
+      return exports.tablifyArrays(arr, opts);
+    } else {
+      return exports.tablifyDicts(arr, opts);
+    }
+  } else {
+    throw new Error(&#x27;tablify cannot handle non-objects&#x27;);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.tablify.tablifyArrays" id="apidoc.element.tablify.tablifyArrays">
+        function <span class="apidocSignatureSpan">tablify.</span>tablifyArrays
+        <span class="apidocSignatureSpan">(arr, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">tablifyArrays = function (arr, opts) {
+  var c, row, _i, _len;
+  c = new printer(opts);
+  for (_i = 0, _len = arr.length; _i &#x3c; _len; _i++) {
+    row = arr[_i];
+    c.push(row);
+  }
+  return c.stringify();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.tablify.tablifyDicts" id="apidoc.element.tablify.tablifyDicts">
+        function <span class="apidocSignatureSpan">tablify.</span>tablifyDicts
+        <span class="apidocSignatureSpan">(arr, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">tablifyDicts = function (arr, opts) {
+
+<span class="apidocCodeCommentSpan">  /*
+  takes an array of dictionaries that may have different keys
+   */
+</span>  var c, dict, i, k, known_keys, row, _i, _j, _k, _len, _len1, _len2, _ref;
+  opts = opts || {};
+  if (opts.has_header == null) {
+    opts.has_header = true;
+  }
+  if (opts.show_index == null) {
+    opts.show_index = true;
+  }
+  if (!opts.keys) {
+    known_keys = {};
+    for (_i = 0, _len = arr.length; _i &#x3c; _len; _i++) {
+      dict = arr[_i];
+      for (k in dict) {
+        known_keys[k] = true;
+      }
+    }
+    opts.keys = (function() {
+      var _results;
+      _results = [];
+      for (k in known_keys) {
+        _results.push(k);
+      }
+      return _results;
+    })();
+    opts.keys.sort();
+  }
+  c = new printer(opts);
+  if (opts.has_header) {
+    row = (function() {
+      var _j, _len1, _ref, _results;
+      _ref = opts.keys;
+      _results = [];
+      for (_j = 0, _len1 = _ref.length; _j &#x3c; _len1; _j++) {
+        k = _ref[_j];
+        _results.push(k);
+      }
+      return _results;
+    })();
+    c.push(row);
+  }
+  for (i = _j = 0, _len1 = arr.length; _j &#x3c; _len1; i = ++_j) {
+    dict = arr[i];
+    row = [];
+    _ref = opts.keys;
+    for (_k = 0, _len2 = _ref.length; _k &#x3c; _len2; _k++) {
+      k = _ref[_k];
+      row.push((dict[k] != null ? dict[k] : null));
+    }
+    c.push(row);
+  }
+  return c.stringify();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.tablify.tablifySingleDict" id="apidoc.element.tablify.tablifySingleDict">
+        function <span class="apidocSignatureSpan">tablify.</span>tablifySingleDict
+        <span class="apidocSignatureSpan">(o, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">tablifySingleDict = function (o, opts) {
+  var arr, k, v;
+  arr = [];
+  for (k in o) {
+    v = o[k];
+    arr.push([k, v]);
+  }
+  arr.sort(function(r1, r2) {
+    return r1[0].localeCompare(r2[0]);
+  });
+  return exports.tablifyArrays(arr, opts);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.tablify.toString" id="apidoc.element.tablify.toString">
+        function <span class="apidocSignatureSpan">tablify.</span>toString
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">toString = function () {
+    return text;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.tablify.tablifyArrays" id="apidoc.module.tablify.tablifyArrays">module tablify.tablifyArrays</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.tablify.tablifyArrays.tablifyArrays" id="apidoc.element.tablify.tablifyArrays.tablifyArrays">
+        function <span class="apidocSignatureSpan">tablify.</span>tablifyArrays
+        <span class="apidocSignatureSpan">(arr, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">tablifyArrays = function (arr, opts) {
+  var c, row, _i, _len;
+  c = new printer(opts);
+  for (_i = 0, _len = arr.length; _i &#x3c; _len; _i++) {
+    row = arr[_i];
+    c.push(row);
+  }
+  return c.stringify();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.tablify.tablifyDicts" id="apidoc.module.tablify.tablifyDicts">module tablify.tablifyDicts</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.tablify.tablifyDicts.tablifyDicts" id="apidoc.element.tablify.tablifyDicts.tablifyDicts">
+        function <span class="apidocSignatureSpan">tablify.</span>tablifyDicts
+        <span class="apidocSignatureSpan">(arr, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">tablifyDicts = function (arr, opts) {
+
+<span class="apidocCodeCommentSpan">  /*
+  takes an array of dictionaries that may have different keys
+   */
+</span>  var c, dict, i, k, known_keys, row, _i, _j, _k, _len, _len1, _len2, _ref;
+  opts = opts || {};
+  if (opts.has_header == null) {
+    opts.has_header = true;
+  }
+  if (opts.show_index == null) {
+    opts.show_index = true;
+  }
+  if (!opts.keys) {
+    known_keys = {};
+    for (_i = 0, _len = arr.length; _i &#x3c; _len; _i++) {
+      dict = arr[_i];
+      for (k in dict) {
+        known_keys[k] = true;
+      }
+    }
+    opts.keys = (function() {
+      var _results;
+      _results = [];
+      for (k in known_keys) {
+        _results.push(k);
+      }
+      return _results;
+    })();
+    opts.keys.sort();
+  }
+  c = new printer(opts);
+  if (opts.has_header) {
+    row = (function() {
+      var _j, _len1, _ref, _results;
+      _ref = opts.keys;
+      _results = [];
+      for (_j = 0, _len1 = _ref.length; _j &#x3c; _len1; _j++) {
+        k = _ref[_j];
+        _results.push(k);
+      }
+      return _results;
+    })();
+    c.push(row);
+  }
+  for (i = _j = 0, _len1 = arr.length; _j &#x3c; _len1; i = ++_j) {
+    dict = arr[i];
+    row = [];
+    _ref = opts.keys;
+    for (_k = 0, _len2 = _ref.length; _k &#x3c; _len2; _k++) {
+      k = _ref[_k];
+      row.push((dict[k] != null ? dict[k] : null));
+    }
+    c.push(row);
+  }
+  return c.stringify();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.tablify.tablifySingleDict" id="apidoc.module.tablify.tablifySingleDict">module tablify.tablifySingleDict</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.tablify.tablifySingleDict.tablifySingleDict" id="apidoc.element.tablify.tablifySingleDict.tablifySingleDict">
+        function <span class="apidocSignatureSpan">tablify.</span>tablifySingleDict
+        <span class="apidocSignatureSpan">(o, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">tablifySingleDict = function (o, opts) {
+  var arr, k, v;
+  arr = [];
+  for (k in o) {
+    v = o[k];
+    arr.push([k, v]);
+  }
+  arr.sort(function(r1, r2) {
+    return r1[0].localeCompare(r2[0]);
+  });
+  return exports.tablifyArrays(arr, opts);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.tablify.toString" id="apidoc.module.tablify.toString">module tablify.toString</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.tablify.toString.toString" id="apidoc.element.tablify.toString.toString">
+        function <span class="apidocSignatureSpan">tablify.</span>toString
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function toString() { [native code] }</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
