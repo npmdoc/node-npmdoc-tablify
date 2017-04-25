@@ -1,4 +1,7 @@
-# api documentation for  [tablify (v0.1.5)](https://github.com/malgorithms/tablify)  [![npm package](https://img.shields.io/npm/v/npmdoc-tablify.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-tablify) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-tablify.svg)](https://travis-ci.org/npmdoc/node-npmdoc-tablify)
+# npmdoc-tablify
+
+#### basic api documentation for  [tablify (v0.1.5)](https://github.com/malgorithms/tablify)  [![npm package](https://img.shields.io/npm/v/npmdoc-tablify.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-tablify) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-tablify.svg)](https://travis-ci.org/npmdoc/node-npmdoc-tablify)
+
 #### Quick and painless printing of tabular data
 
 [![NPM](https://nodei.co/npm/tablify.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/tablify)
@@ -63,7 +66,8 @@
         "type": "git",
         "url": "git+ssh://git@github.com/malgorithms/tablify.git"
     },
-    "version": "0.1.5"
+    "version": "0.1.5",
+    "bin": {}
 }
 ```
 
